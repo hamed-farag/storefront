@@ -1,7 +1,11 @@
 const BASE_URL_V1 = "/api/v1";
 
 const urlsV1 = Object.freeze({
-    url: "/url",
+    user: {
+        getUser: "/user/",
+        signIn: "/user/signin",
+        signup: "/user/signup",
+    },
 });
 
 export { BASE_URL_V1, urlsV1 };
