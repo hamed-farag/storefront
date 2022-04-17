@@ -6,6 +6,7 @@ const urlsV1 = Object.freeze({
         signIn: "/user/signin",
         signup: "/user/signup",
     },
+    category: "/category",
 });
 
 export { BASE_URL_V1, urlsV1 };

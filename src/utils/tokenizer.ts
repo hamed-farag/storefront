@@ -1,5 +1,5 @@
-import jsonwebtoken from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 export const generateToken: Function = (id: string): string => {
-    return jsonwebtoken.sign(id, process.env.JWT_SECRET as string);
+    return jwt.sign(id, process.env.JWT_SECRET as string);
 };
