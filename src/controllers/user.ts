@@ -1,7 +1,11 @@
 import { Request, Response } from "express";
 
-import { createUser, getUserByEmail } from "../models/user";
-import { UserCreatedReturnType, UserGetReturnedType } from "../interfaces/User";
+import { createUser, getUserByEmail, getUserByEmailAndPassword } from "../models/user";
+import {
+    UserCreatedReturnType,
+    UserGetReturnedType,
+    UserFullGetReturnedType,
+} from "../interfaces/User";
 
 import stringer from "../utils/string";
 
@@ -33,6 +37,21 @@ export async function signUpUser(req: Request, res: Response) {
     }
 }
 
-export function signInUser(req: Request, res: Response) {
-    res.send("SIGN_IN");
+export async function signInUser(req: Request, res: Response) {
+    try {
+        const { email, password } = req.body;
+
+        if (stringer.isEmptyOrNull(email) || stringer.isEmptyOrNull(password)) {
+            return res.status(500).send({ ...errors.MISSING_PARAMS });
+        }
+
+        const user: UserFullGetReturnedType = await getUserByEmailAndPassword(email, password);
+        if (user.token) {
+            return res.status(200).json(user);
+        }
+
+        return res.status(404).json({ ...errors.USER_NOT_FOUND });
+    } catch (error) {
+        return res.status(500).json({ ...errors.USER_GET_ERROR });
+    }
 }
