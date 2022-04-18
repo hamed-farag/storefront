@@ -15,8 +15,175 @@
     "tags": ["udacity", "nanodegree", "Advanced", "full-stack"],
     "schemes": ["http"],
     "paths": {
-        "/url": {
-
+        "/user/signin": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Sign In User",
+                "description": "API to help user to sign in",
+                "operationId": "signinUser",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "User Object (Email & Password)",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SignInUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Operation",
+                        "examples": {
+                            "application/json": {
+                                "token": "1NiJ9.ODYzMTIzYTYtOGI2YS00MWI2LTk0YzgtNTU4ODVhYzlmMDY2.4hiOMxW7A",
+                                "profile": {
+                                    "id": "863123a6-8b6a-41b6-94c8-55885ac9f066",
+                                    "firstName": "Super",
+                                    "lastName": "User",
+                                    "email": "user@email.com",
+                                    "gender": "male"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User Not Found",
+                        "examples": {
+                            "application/json": {
+                                "code": "SF-ER-4",
+                                "message": "User not Found!"
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Missing one or more parameter!",
+                        "examples": {
+                            "application/json": {
+                                "code": "SF-ER-1",
+                                "message": "One or more input is missing!"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Something Went Wrong!",
+                        "examples": {
+                            "application/json": {
+                                "code": "SF-ER-5",
+                                "message": "User not Found!"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/signup": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Sign Up User",
+                "description": "API to help user to Sign Up",
+                "operationId": "signupUser",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Full User Object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SignUpUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Operation",
+                        "examples": {
+                            "application/json": {
+                                "token": "1NiJ9.ODYzMTIzYTYtOGI2YS00MWI2LTk0YzgtNTU4ODVhYzlmMDY2.4hiOMxW7A",
+                                "profile": {
+                                    "id": "863123a6-8b6a-41b6-94c8-55885ac9f066",
+                                    "firstName": "Super",
+                                    "lastName": "User",
+                                    "email": "user@email.com",
+                                    "gender": "male"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "User Already Exist",
+                        "examples": {
+                            "application/json": {
+                                "code": "SF-ER-2",
+                                "message": "User Already Exist!"
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Missing one or more parameter!",
+                        "examples": {
+                            "application/json": {
+                                "code": "SF-ER-1",
+                                "message": "One or more input is missing!"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Something Went Wrong!",
+                        "examples": {
+                            "application/json": {
+                                "code": "SF-ER-3",
+                                "message": "Something went Wrong while creating new User!"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "SignInUser": {
+            "required": ["email", "password"],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "example": "user@email.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "123@456&P@ss"
+                }
+            }
+        },
+        "SignUpUser": {
+            "required": ["firstName", "lastName", "email", "gender", "password"],
+            "properties": {
+                "firstName": {
+                    "type": "string",
+                    "example": "Super"
+                },
+                "lastName": {
+                    "type": "string",
+                    "example": "User"
+                },
+                "gender": {
+                    "type": "string",
+                    "example": "male"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "user@email.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "123@456&P@ss"
+                }
+            }
         }
     },
     "externalDocs": { "description": "Find out more about Swagger", "url": "http://swagger.io" }

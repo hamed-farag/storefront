@@ -22,7 +22,7 @@ export async function signUpUser(req: Request, res: Response) {
             stringer.isEmptyOrNull(gender) ||
             stringer.isEmptyOrNull(password)
         ) {
-            return res.status(500).send({ ...errors.MISSING_PARAMS });
+            return res.status(422).send({ ...errors.MISSING_PARAMS });
         }
 
         const user: UserGetReturnedType = await getUserByEmail(email);
@@ -42,7 +42,7 @@ export async function signInUser(req: Request, res: Response) {
         const { email, password } = req.body;
 
         if (stringer.isEmptyOrNull(email) || stringer.isEmptyOrNull(password)) {
-            return res.status(500).send({ ...errors.MISSING_PARAMS });
+            return res.status(422).send({ ...errors.MISSING_PARAMS });
         }
 
         const user: UserFullGetReturnedType = await getUserByEmailAndPassword(email, password);
