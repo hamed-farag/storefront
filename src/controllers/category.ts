@@ -71,13 +71,11 @@ export async function updateCategoryService(req: Request, res: Response) {
             return res.status(500).send({ ...errors.MISSING_PARAMS });
         }
 
-        const category: CategoryCreatedReturnType = await getCategoryBy("id", id);
-        if (!category) {
-            return res.status(409).json({ ...errors.CATEGORY_NOT_FOUND });
-        }
-
         const updatedCategory: CategoryCreatedReturnType = await updateCategory({ id, name });
-        return res.status(200).json(updatedCategory);
+        const jsonToSend =
+            updatedCategory !== undefined ? updatedCategory : errors.CATEGORY_NOT_FOUND;
+
+        return res.status(200).json(jsonToSend);
     } catch (error) {
         return res.status(500).json({ ...errors.CATEGORY_UPDATE_ERROR });
     }
@@ -91,13 +89,11 @@ export async function deleteCategoryService(req: Request, res: Response) {
             return res.status(500).send({ ...errors.MISSING_PARAMS });
         }
 
-        const category: CategoryCreatedReturnType = await getCategoryBy("id", id);
-        if (!category) {
-            return res.status(409).json({ ...errors.CATEGORY_NOT_FOUND });
-        }
-
         const deletedCategory: CategoryCreatedReturnType = await deleteCategoryById(id);
-        return res.status(200).json(deletedCategory);
+        const jsonToSend =
+            deletedCategory !== undefined ? deletedCategory : errors.CATEGORY_NOT_FOUND;
+
+        return res.status(200).json(jsonToSend);
     } catch (error) {
         return res.status(500).json({ ...errors.CATEGORY_DELETE_ERROR });
     }
