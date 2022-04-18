@@ -1,4 +1,8 @@
-## Database Setup
+# StoreFront NodeJS Application
+
+NodeJS RESTful APIs Application for an online store.
+
+## 📙 Database Setup
 
 For creating StoreFront Database, you need to follow the below points:
 
@@ -19,3 +23,27 @@ For creating StoreFront Database, you need to follow the below points:
 -   Connect to database and grant all privileges to the user **ud_test_storefront**.
     -   `\c ud_test_storefront`
     -   `GRANT ALL PRIVILEGES ON DATABASE ud_test_storefront TO ud_test_user;`
+
+---
+
+## 📄 Available Scripts
+
+Install Node Modules Packages
+
+### `npm run start`
+
+Runs the app in the development mode.
+Open [Swagger UI Documentation](http://localhost:8080/api/v1/) to view it in your browser.
+Sample Url
+
+```
+http://localhost:8080/api/v1/user/signin
+```
+
+### `npm run build`
+
+Builds the app for production environment to the `build` folder.
+
+### `npm run test`
+
+Run Available Unit Testing Cases
