@@ -31,6 +31,22 @@ const errors = {
         code: "SF-ER-8",
         message: "Category not Found!",
     },
+    CATEGORY_UPDATE_ERROR: {
+        code: "SF-ER-9",
+        message: "Something went Wrong while updating new Category!",
+    },
+    CATEGORY_DELETE_ERROR: {
+        code: "SF-ER-10",
+        message: "Something went Wrong while deleting new Category!",
+    },
+    CATEGORY_GET_ERROR: {
+        code: "SF-ER-11",
+        message: "Something went Wrong while getting Category!",
+    },
+    CATEGORIES_GET_ERROR: {
+        code: "SF-ER-12",
+        message: "Something went Wrong while getting Category!",
+    },
 };
 
 export default Object.freeze(errors);
