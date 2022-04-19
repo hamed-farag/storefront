@@ -2,18 +2,18 @@ import { PoolClient, QueryResult, DatabaseError } from "pg";
 import { v4 as uuidv4 } from "uuid";
 import bcrypt from "bcrypt";
 
-import { getDBClient } from "../database/client";
-import { parseError } from "../database/errors";
+import { getDBClient } from "../../database/client";
+import { parseError } from "../../database/errors";
 
-import { generateToken } from "../utils/tokenizer";
+import { generateToken } from "../../utils/tokenizer";
 
 import {
     UserInterface,
     UserCreatedReturnType,
-    UserGetReturnedType,
     UserFullGetType,
     UserFullGetReturnedType,
-} from "../interfaces/User";
+    UserProfileGetType,
+} from "../../interfaces/User";
 
 export async function createUser(user: UserInterface): Promise<UserCreatedReturnType> {
     try {
@@ -39,9 +39,8 @@ export async function createUser(user: UserInterface): Promise<UserCreatedReturn
         const token: string = generateToken(id.toString());
         return { token };
     } catch (err) {
-        throw new Error(
-            `Could not create user. Error: ${parseError(err as unknown as DatabaseError)}`
-        );
+        const error = parseError(err as DatabaseError);
+        return { token: null, error: `Could not create user. Error: ${error}` };
     }
 }
 
@@ -79,26 +78,28 @@ export async function getUserByEmailAndPassword(
             profile: {},
         };
     } catch (err) {
-        throw new Error(
-            `Could not retrieve user. Error: ${parseError(err as unknown as DatabaseError)}`
-        );
+        const error = parseError(err as DatabaseError);
+        return {
+            token: null,
+            error: `Could not retrieve user. Error: ${error}`,
+        };
     }
 }
 
-export async function getUserByEmail(email: string): Promise<UserGetReturnedType> {
+export async function deleteUserByEmail(
+    email: string
+): Promise<UserProfileGetType | { error: string }> {
     try {
         const conn: PoolClient = await getDBClient().connect();
-        const sql: string = `SELECT id FROM "User" WHERE email = $1;`;
-
+        const sql: string = `DELETE FROM "User" where email = $1 RETURNING *`;
         const result: QueryResult = await conn.query(sql, [email]);
         conn.release();
 
-        const id: string = result.rows[0]?.id;
-
-        return { id };
+        return result.rows[0];
     } catch (err) {
-        throw new Error(
-            `Could not Get User by Email. Error: ${parseError(err as unknown as DatabaseError)}`
-        );
+        const error = parseError(err as DatabaseError);
+        return {
+            error: `Could not Delete User. Error: ${error}`,
+        };
     }
 }

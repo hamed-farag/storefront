@@ -10,6 +10,7 @@ export const parseError = (err: DatabaseError) => {
         "08003": "connection_does_not_exist",
         "08006": "connection_failure",
         "2F002": "modifying_sql_data_not_permitted",
+        "23505": "duplicate_unique_key_value",
         "42000": "syntax_error_or_access_rule_violation",
         "42501": "insufficient_privilege",
         "42601": "syntax_error",
@@ -25,6 +26,7 @@ export const parseError = (err: DatabaseError) => {
     if (err !== undefined) {
         if (err.message !== undefined) {
             logger.error("Error Message", err.message);
+            return err.message;
         }
 
         if (err.code !== undefined) {
@@ -33,10 +35,14 @@ export const parseError = (err: DatabaseError) => {
             if (errorCodes[err.code] !== undefined) {
                 logger.error("Postgres Error's Code", errorCodes[err.code]);
             }
+
+            return err.code;
         }
 
         if (err.code === undefined) {
             logger.error("Unknown Error", err);
+            return err.code;
         }
     }
+    return null;
 };

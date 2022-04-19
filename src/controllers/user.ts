@@ -1,11 +1,7 @@
 import { Request, Response } from "express";
 
-import { createUser, getUserByEmail, getUserByEmailAndPassword } from "../models/user";
-import {
-    UserCreatedReturnType,
-    UserGetReturnedType,
-    UserFullGetReturnedType,
-} from "../interfaces/User";
+import { createUser, getUserByEmailAndPassword } from "../models/user";
+import { UserCreatedReturnType, UserFullGetReturnedType } from "../interfaces/User";
 
 import stringer from "../utils/string";
 
@@ -25,12 +21,10 @@ export async function signUpUser(req: Request, res: Response) {
             return res.status(422).send({ ...errors.MISSING_PARAMS });
         }
 
-        const user: UserGetReturnedType = await getUserByEmail(email);
-        if (user.id) {
-            return res.status(409).json({ ...errors.USER_ALREADY_EXIST });
-        }
-
         const newUser: UserCreatedReturnType = await createUser(req.body);
+        if (newUser.token === null) {
+            return res.status(500).json({ error: newUser.error });
+        }
         return res.status(200).json(newUser);
     } catch (error) {
         return res.status(500).json({ ...errors.USER_CREATE_ERROR });
