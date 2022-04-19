@@ -1,9 +1,9 @@
 import { PoolClient, QueryResult, DatabaseError } from "pg";
 
-import { getDBClient } from "../database/client";
-import { parseError } from "../database/errors";
+import { getDBClient } from "../../database/client";
+import { parseError } from "../../database/errors";
 
-import { CategoryCreatedReturnType, CategoryInterface } from "../interfaces/Category";
+import { CategoryCreatedReturnType, CategoryInterface } from "../../interfaces/Category";
 
 export async function createCategory(name: string): Promise<CategoryCreatedReturnType> {
     try {
@@ -43,8 +43,6 @@ export async function deleteCategoryById(id: string) {
         const sql: string = `DELETE FROM "Category" where id = $1 RETURNING *`;
         const result: QueryResult = await conn.query(sql, [id]);
         conn.release();
-
-        console.log("deeeelete", result);
 
         return result.rows[0];
     } catch (err) {
