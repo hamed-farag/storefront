@@ -1,9 +1,11 @@
 export interface CategoryInterface {
-    id: string;
+    id: number;
     name: string;
 }
 
-export interface CategoryCreatedReturnType {
-    id: string;
+export interface CategoryCreatedReturnType extends CategoryInterface {}
+
+export interface CategoryCreateInterface {
+    id: number;
     name: string;
 }

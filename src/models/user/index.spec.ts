@@ -1,8 +1,8 @@
-import { createUser, getUserByEmailAndPassword, deleteUserByEmail } from "./";
-import { UserInterface, UserCreatedReturnType } from "../../interfaces/User";
-
 import dotenv from "dotenv";
 import path from "path";
+
+import { createUser, getUserByEmailAndPassword, deleteUserByEmail } from "./";
+import { UserInterface, UserCreatedReturnType } from "../../interfaces/User";
 
 //  to resolve "Error: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string"
 dotenv.config({

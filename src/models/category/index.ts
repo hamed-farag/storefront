@@ -37,7 +37,7 @@ export async function updateCategory(
     }
 }
 
-export async function deleteCategoryById(id: string) {
+export async function deleteCategoryById(id: number) {
     try {
         const conn: PoolClient = await getDBClient().connect();
         const sql: string = `DELETE FROM "Category" where id = $1 RETURNING *`;
@@ -54,7 +54,7 @@ export async function deleteCategoryById(id: string) {
 
 export async function getCategoryBy(
     key: string,
-    value: string
+    value: string | number
 ): Promise<CategoryCreatedReturnType> {
     try {
         const conn: PoolClient = await getDBClient().connect();
