@@ -1,0 +1,9 @@
+{
+    "dev": {
+        "driver": "pg",
+        "host": "127.0.0.1",
+        "database": "ud_test_storefront",
+        "user": "ud_test_user",
+        "password": "ud_pass@word"
+    }
+}
