@@ -41,7 +41,6 @@ export async function createProduct(product: ProductInterface): Promise<ProductR
 
 export async function updateProduct(product: ProductFullInterface): Promise<ProductReturnType> {
     try {
-        console.log("inside", product);
         const { id, name, price, categoryId } = product;
 
         const conn: PoolClient = await getDBClient().connect();

@@ -2,25 +2,25 @@ import dotenv from "dotenv";
 import path from "path";
 
 import { createUser, getUserByEmailAndPassword, deleteUserByEmail } from "./";
-import { UserInterface, UserCreatedReturnType } from "../../interfaces/User";
+import {
+    UserInterface,
+    UserCreatedReturnType,
+    UserFullGetReturnedType,
+} from "../../interfaces/User";
 
 //  to resolve "Error: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string"
 dotenv.config({
-    path: `${path.join(__dirname, `../../../../.env.development`)}`,
+    path: `${path.join(__dirname, `../../../../.env.test`)}`,
 });
 
 describe("User Model", () => {
-    let user: UserInterface;
-
-    beforeEach(() => {
-        user = {
-            firstName: "Super",
-            lastName: "User",
-            email: "user@email.com",
-            password: "P@sse0rd",
-            gender: "male",
-        };
-    });
+    const user: UserInterface = {
+        firstName: "Super",
+        lastName: "User",
+        email: "user@gmail.com",
+        password: "P@sse0rd",
+        gender: "male",
+    };
 
     it("should have a createUser method", () => {
         expect(createUser).toBeDefined();
@@ -38,16 +38,15 @@ describe("User Model", () => {
         const result: UserCreatedReturnType = await createUser(user);
 
         expect(result.token).toBeDefined();
-        // expect(result.token).toEqual("adfayusd98yas0d8fas-90dfuasdf");
     });
 
     it("should get a user normally using getUserByEmailAndPassword method (SignIn Method)", async () => {
-        const result: UserCreatedReturnType = await getUserByEmailAndPassword(
+        const result: UserFullGetReturnedType = await getUserByEmailAndPassword(
             user.email,
             user.password
         );
 
         expect(result.token).toBeDefined();
-        // expect(result.token).toEqual("sdfsdkfuys9df8ysd9fysdf");
+        expect(result.profile).toBeDefined();
     });
 });

@@ -9,7 +9,7 @@ import { CategoryCreatedReturnType } from "../../interfaces/Category";
 
 //  to resolve "Error: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string"
 dotenv.config({
-    path: `${path.join(__dirname, `../../../../.env.development`)}`,
+    path: `${path.join(__dirname, `../../../../.env.test`)}`,
 });
 
 describe("Product Model", () => {
