@@ -22,6 +22,7 @@ describe("Product Model", () => {
 
     beforeAll(async function () {
         const result: CategoryCreatedReturnType = await createCategory("New Category");
+
         product.categoryId = result.id;
     });
 
@@ -64,13 +65,14 @@ describe("Product Model", () => {
     });
 
     it("should update a product by id normally using updateProduct method", async () => {
-        const result: ProductReturnType = await updateProduct({ ...product, price: 1100 });
+        const newPrice = 1100;
 
+        const result: ProductReturnType = await updateProduct({ ...product, price: newPrice });
         product = result;
 
         expect(result.id).toBeDefined();
         expect(result.name).toBeDefined();
-        expect(result.price).toEqual(product.price);
+        expect(Number(result.price)).toEqual(newPrice);
     });
 
     it("should get all products using getProducts method", async () => {

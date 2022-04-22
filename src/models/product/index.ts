@@ -24,7 +24,14 @@ export async function createProduct(product: ProductInterface): Promise<ProductR
         ]);
         conn.release();
 
-        return result.rows[0];
+        const savedProduct = result.rows[0];
+
+        return {
+            id: savedProduct.id,
+            name: savedProduct.name,
+            price: savedProduct.price,
+            categoryId: savedProduct.categoryid,
+        };
     } catch (err) {
         throw new Error(
             `Could not create Product. Error: ${parseError(err as unknown as DatabaseError)}`
@@ -34,7 +41,9 @@ export async function createProduct(product: ProductInterface): Promise<ProductR
 
 export async function updateProduct(product: ProductFullInterface): Promise<ProductReturnType> {
     try {
+        console.log("inside", product);
         const { id, name, price, categoryId } = product;
+
         const conn: PoolClient = await getDBClient().connect();
         const sql: string = `UPDATE "Product" SET name = $2, price = $3, categoryid = $4 where id = $1 RETURNING *`;
         const result: QueryResult = await conn.query(sql, [id, name, price, categoryId]);
