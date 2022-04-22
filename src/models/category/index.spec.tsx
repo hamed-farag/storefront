@@ -9,7 +9,7 @@ import {
     updateCategory,
 } from "./";
 
-import { CategoryCreatedReturnType, CategoryCreateInterface } from "../../interfaces/Category";
+import { CategoryCreatedReturnType, CategoryInterface } from "../../interfaces/Category";
 
 //  to resolve "Error: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string"
 dotenv.config({
@@ -17,7 +17,7 @@ dotenv.config({
 });
 
 describe("Category Model", () => {
-    let category: CategoryCreateInterface = {
+    let category: CategoryInterface = {
         id: 1,
         name: "Category 1",
     };

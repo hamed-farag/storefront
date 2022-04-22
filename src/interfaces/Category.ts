@@ -4,8 +4,3 @@ export interface CategoryInterface {
 }
 
 export interface CategoryCreatedReturnType extends CategoryInterface {}
-
-export interface CategoryCreateInterface {
-    id: number;
-    name: string;
-}
