@@ -5,12 +5,16 @@ import swaggerDocument from "./swagger.json";
 
 import userRoutes from "./userRoutes";
 import categoryRoutes from "./categoryRoutes";
+import productRoutes from "./productRoutes";
 import { BASE_URL_V1 } from "../../constants/urls";
 
 export default function (serverApp: Express): void {
     // register User Routes APIs
     userRoutes(serverApp);
+    // register Category Routes APIs
     categoryRoutes(serverApp);
+    // register Product Routes APIs
+    productRoutes(serverApp);
 
     // initialize swagger document
     serverApp.use(BASE_URL_V1, SwaggerUi.serve, SwaggerUi.setup(swaggerDocument));

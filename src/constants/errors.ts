@@ -47,6 +47,35 @@ const errors = {
         code: "SF-ER-12",
         message: "Something went Wrong while getting Category!",
     },
+    //
+    PRODUCT_ALREADY_EXIST: {
+        code: "SF-ER-13",
+        message: "Product Already Exist!",
+    },
+    PRODUCT_CREATE_ERROR: {
+        code: "SF-ER-14",
+        message: "Something went Wrong while creating new Product!",
+    },
+    PRODUCT_NOT_FOUND: {
+        code: "SF-ER-15",
+        message: "Product not Found!",
+    },
+    PRODUCT_UPDATE_ERROR: {
+        code: "SF-ER-16",
+        message: "Something went Wrong while updating new Product!",
+    },
+    PRODUCT_DELETE_ERROR: {
+        code: "SF-ER-17",
+        message: "Something went Wrong while deleting new Product!",
+    },
+    PRODUCT_GET_ERROR: {
+        code: "SF-ER-18",
+        message: "Something went Wrong while getting Product!",
+    },
+    PRODUCTS_GET_ERROR: {
+        code: "SF-ER-19",
+        message: "Something went Wrong while getting Product!",
+    },
 };
 
 export default Object.freeze(errors);
