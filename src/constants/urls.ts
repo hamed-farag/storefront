@@ -8,6 +8,8 @@ const urlsV1 = Object.freeze({
     },
     category: "/category",
     product: "/product",
+    order: "/order",
+    orderProducts: "/order/products",
 });
 
 export { BASE_URL_V1, urlsV1 };

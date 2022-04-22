@@ -33,12 +33,7 @@ Install Node Modules Packages
 ### `npm run start`
 
 Runs the app in the development mode.
-Open [Swagger UI Documentation](http://localhost:8080/api/v1/) to view it in your browser.
-Sample Url
-
-```
-http://localhost:8080/api/v1/user/signin
-```
+Open [Swagger UI Documentation](http://localhost:8080/api/v1/) to view it in your browser Or You can Download [Postman Collection](https://raw.githubusercontent.com/hamed-farag/storefront/master/Storefront.postman_collection.json).
 
 ### `npm run build`
 

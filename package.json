@@ -17,7 +17,9 @@
         "jasmine": "cross-env NODE_ENV=test jasmine",
         "prettier": "prettier --config .prettierrc src/**/*.ts --write",
         "lint": "npx eslint src/* --ext .ts",
-        "swagger-autogen": "ts-node ./src/swagger.js"
+        "swagger-autogen": "ts-node ./src/swagger.js",
+        "up-db": "npx db-migrate up --config ./migrations/configs/database-dev.json",
+        "down-db": "npx db-migrate down --config ./migrations/configs/database-dev.json"
     },
     "author": "hamed-farag",
     "license": "ISC",

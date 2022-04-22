@@ -76,6 +76,23 @@ const errors = {
         code: "SF-ER-19",
         message: "Something went Wrong while getting Product!",
     },
+    ///
+    ORDER_CREATE_ERROR: {
+        code: "SF-ER-20",
+        message: "Something went Wrong while Creating Order!",
+    },
+    ORDER_GET_ERROR: {
+        code: "SF-ER-21",
+        message: "Something went Wrong while Getting Order!",
+    },
+    ORDER_DELETE_ERROR: {
+        code: "SF-ER-22",
+        message: "Something went Wrong while Deleting Order!",
+    },
+    ORDER_UPDATE_STATUS_ERROR: {
+        code: "SF-ER-23",
+        message: "Something went Wrong while Updating Order's Status!",
+    },
 };
 
 export default Object.freeze(errors);
