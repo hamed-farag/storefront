@@ -43,8 +43,6 @@ DB_PORT = 5432
 BCRYPT_PASSWORD = "Ud@cItYy2022"
 SALT_ROUNDS = 10
 JWT_SECRET = "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY1MDIxNDQ4NCwiaWF0IjoxNjUwMjE0NDg0fQ.PzOAKz56zpFTm8e5lxzwv5bL5-4pM5yAz-IsskRIibg"
-
-
 ```
 
 ---
@@ -65,3 +63,11 @@ Builds the app for production environment to the `build` folder.
 ### `npm run test`
 
 Run Available Unit Testing Cases
+
+## Endpoints
+
+-   See [REQUIREMENTS.md](./REQUIREMENTS.md) file
+
+## Database Schema
+
+-   See [REQUIREMENTS.md](./REQUIREMENTS.md) file
