@@ -18,11 +18,34 @@ For creating StoreFront Database, you need to follow the below points:
 ### For Test Environment
 
 -   Connect to the default Postgres Database instance as root user `psql -U postgres`.
--   Create a new user `CREATE USER ud_test_user WITH PASSWORD 'ud_pass@word';`.
--   Create a database called **ud_test_storefront** `CREATE DATABASE ud_test_storefront;`.
--   Connect to database and grant all privileges to the user **ud_test_storefront**.
+-   Create a new user `CREATE USER ud_user WITH PASSWORD 'ud_pass@word';`.
+-   Create a database called **ud_test_storefront** `CREATE DATABASE ud_storefront_test;`.
+-   Connect to database and grant all privileges to the user **ud_storefront_test**.
     -   `\c ud_test_storefront`
-    -   `GRANT ALL PRIVILEGES ON DATABASE ud_test_storefront TO ud_test_user;`
+    -   `GRANT ALL PRIVILEGES ON DATABASE ud_test_storefront TO ud_user;`
+
+---
+
+## Environment Variables Set up
+
+Bellow are the environmental variables that needs to be set in a `.env` file.
+
+```
+PORT = 8080
+
+DB_HOST = "127.0.0.1"
+DB_NAME = "ud_storefront"
+DB_NAME_TEST = "ud_storefront_test"
+DB_USER = "ud_user"
+DB_PASSWORD = "ud_pass@word"
+DB_PORT = 5432
+
+BCRYPT_PASSWORD = "Ud@cItYy2022"
+SALT_ROUNDS = 10
+JWT_SECRET = "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY1MDIxNDQ4NCwiaWF0IjoxNjUwMjE0NDg0fQ.PzOAKz56zpFTm8e5lxzwv5bL5-4pM5yAz-IsskRIibg"
+
+
+```
 
 ---
 

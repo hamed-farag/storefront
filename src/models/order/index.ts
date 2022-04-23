@@ -6,7 +6,7 @@ import { parseError } from "../../database/errors";
 
 import UUID from "../../types/UUID";
 
-import { Order, OrderProduct } from "../../interfaces/Order";
+import { Order } from "../../interfaces/Order";
 
 export async function createOrder(order: Order) {
     const { userId, status, products } = order;
