@@ -3,12 +3,9 @@ import { v4 as uuidv4 } from "uuid";
 
 import { serverApp as expressServerApp } from "../../index";
 
-import { UserInterface, UserCreatedReturnType } from "../../interfaces/User";
+import { UserInterface } from "../../interfaces/User";
 
 const request = supertest(expressServerApp);
-
-const uuiRgEx =
-    /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
 
 describe("/User APIs", function () {
     const email = `${uuidv4()}@testAPI.com`;

@@ -8,9 +8,6 @@ import { CategoryCreatedReturnType } from "../../interfaces/Category";
 
 const request = supertest(expressServerApp);
 
-const uuiRgEx =
-    /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
-
 describe("/Category APIs", function () {
     const email = `${uuidv4()}@testAPI.com`;
     const password = "P@ssw0rd";
