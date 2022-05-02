@@ -6,9 +6,9 @@ import { parseError } from "../../database/errors";
 
 import UUID from "../../types/UUID";
 
-import { Order } from "../../interfaces/Order";
+import { Order, OrderReturnType } from "../../interfaces/Order";
 
-export async function createOrder(order: Order) {
+export async function createOrder(order: Order): Promise<OrderReturnType> {
     const { userId, status, products } = order;
 
     const generatedOrderId = uuidv4();
@@ -42,7 +42,7 @@ export async function createOrder(order: Order) {
     }
 }
 
-export async function getOrderById(id: UUID) {
+export async function getOrderById(id: UUID): Promise<OrderReturnType> {
     try {
         const conn: PoolClient = await getDBClient().connect();
         const sql: string = `SELECT * FROM "Order" INNER JOIN "Order_Products" ON "Order".id = "Order_Products".orderid where "Order".id = $1`;

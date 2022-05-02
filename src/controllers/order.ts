@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 
 import { createOrder, getOrderById, deleteOrderById, updateOrderStatusById } from "../models/order";
 
-import { Order, OrderProduct } from "../interfaces/Order";
+import { Order, OrderProduct, OrderReturnType } from "../interfaces/Order";
 import UUID from "../types/UUID";
 
 import stringer from "../utils/string";
@@ -17,7 +17,7 @@ export async function createOrderService(req: Request, res: Response) {
             return res.status(500).send({ ...errors.MISSING_PARAMS });
         }
 
-        const orderResult: Order = await createOrder({
+        const orderResult: OrderReturnType = await createOrder({
             status: "active",
             userId: res.locals.userData.id,
             products: products,
@@ -36,7 +36,7 @@ export async function getOrderByIdService(req: Request, res: Response) {
         if (stringer.isEmptyOrNull(orderId.toString())) {
             return res.status(500).send({ ...errors.MISSING_PARAMS });
         }
-        const orderResult: Order = await getOrderById(orderId);
+        const orderResult: OrderReturnType = await getOrderById(orderId);
 
         return res.status(200).json(orderResult);
     } catch (error) {

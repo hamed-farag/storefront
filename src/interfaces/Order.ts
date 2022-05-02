@@ -11,3 +11,9 @@ export interface Order {
     status: string;
     products: OrderProduct[];
 }
+
+export interface OrderReturnType {
+    id: UUID;
+    userid: UUID;
+    status: string;
+}

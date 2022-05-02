@@ -75,12 +75,26 @@ export async function getUserByEmailAndPassword(
         }
         return {
             token: null,
-            profile: {},
+            profile: {
+                id: "",
+                firstName: "",
+                lastName: "",
+                email: "",
+                gender: "",
+            },
+            error: `Could not retrieve user.`,
         };
     } catch (err) {
         const error = parseError(err as DatabaseError);
         return {
             token: null,
+            profile: {
+                id: "",
+                firstName: "",
+                lastName: "",
+                email: "",
+                gender: "",
+            },
             error: `Could not retrieve user. Error: ${error}`,
         };
     }

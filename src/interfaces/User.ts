@@ -25,7 +25,7 @@ export interface UserProfileGetType {
 
 export interface UserFullGetReturnedType {
     token: string | null;
-    profile?: UserProfileGetType | {};
+    profile: UserProfileGetType;
     error?: string;
 }
 
