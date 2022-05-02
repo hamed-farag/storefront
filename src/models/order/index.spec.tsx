@@ -3,8 +3,8 @@ import path from "path";
 import { v4 as uuidv4 } from "uuid";
 
 import { createOrder, deleteOrderById, getOrderById, updateOrderStatusById } from "./";
-import { createProduct } from "../product";
-import { createCategory } from "../category";
+import { createProduct, deleteProductById } from "../product";
+import { createCategory, deleteCategoryById } from "../category";
 import { createUser, getUserByEmailAndPassword } from "../user";
 
 import { UserFullGetReturnedType } from "../../interfaces/User";
@@ -52,6 +52,11 @@ describe("Order Model", () => {
             status: "active",
             products: [{ id: product.id as unknown as UUID, quantity: 1 }],
         };
+    });
+
+    afterAll(async function () {
+        await deleteProductById(product.id);
+        await deleteCategoryById(category.id);
     });
 
     it("should have a createOrder method", () => {

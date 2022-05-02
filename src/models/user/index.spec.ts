@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import path from "path";
+import { v4 as uuidv4 } from "uuid";
 
 import { createUser, getUserByEmailAndPassword, deleteUserByEmail } from "./";
 import {
@@ -17,7 +18,7 @@ describe("User Model", () => {
     const user: UserInterface = {
         firstName: "Super",
         lastName: "User",
-        email: "user@gmail.com",
+        email: `${uuidv4()}@gmail.com`,
         password: "P@sse0rd",
         gender: "male",
     };

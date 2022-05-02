@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import path from "path";
 
 import { createProduct, deleteProductById, getProductBy, getProducts, updateProduct } from "./";
-import { createCategory } from "../category";
+import { createCategory, deleteCategoryById } from "../category";
 
 import { ProductReturnType, ProductFullInterface } from "../../interfaces/Product";
 import { CategoryCreatedReturnType } from "../../interfaces/Category";
@@ -13,6 +13,7 @@ dotenv.config({
 });
 
 describe("Product Model", () => {
+    let categoryId: number;
     let product: ProductFullInterface = {
         id: "",
         name: "Product 1",
@@ -22,8 +23,12 @@ describe("Product Model", () => {
 
     beforeAll(async function () {
         const result: CategoryCreatedReturnType = await createCategory("New Category");
-
+        categoryId = result.id;
         product.categoryId = result.id;
+    });
+
+    afterAll(async function () {
+        await deleteCategoryById(categoryId);
     });
 
     it("should have a createProduct method", () => {
