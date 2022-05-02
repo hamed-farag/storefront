@@ -15,8 +15,8 @@ import { authToken } from "../../middlewares/auth";
 export default function (serverApp: Express): void {
     const router = express.Router();
 
-    router.get(urlsV1.category, getCategoriesService);
-    router.get(`${urlsV1.category}/:id`, getCategoryByIdService);
+    router.get(urlsV1.category, authToken, getCategoriesService);
+    router.get(`${urlsV1.category}/:id`, authToken, getCategoryByIdService);
     router.post(urlsV1.category, authToken, createCategoryService);
     router.put(urlsV1.category, authToken, updateCategoryService);
     router.delete(urlsV1.category, authToken, deleteCategoryService);

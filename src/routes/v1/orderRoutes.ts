@@ -16,8 +16,8 @@ export default function (serverApp: Express): void {
 
     router.post(urlsV1.order, authToken, createOrderService);
     router.get(`${urlsV1.order}/:id`, authToken, getOrderByIdService);
-    router.delete(urlsV1.order, deleteOrderByIdService);
-    router.put(urlsV1.order, updateOrderStatusByIdService);
+    router.delete(urlsV1.order, authToken, deleteOrderByIdService);
+    router.put(urlsV1.order, authToken, updateOrderStatusByIdService);
 
     // register routes v1
     serverApp.use(BASE_URL_V1, router);

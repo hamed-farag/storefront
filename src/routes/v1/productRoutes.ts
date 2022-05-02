@@ -15,8 +15,8 @@ import { authToken } from "../../middlewares/auth";
 export default function (serverApp: Express): void {
     const router = express.Router();
 
-    router.get(urlsV1.product, getProductsService);
-    router.get(`${urlsV1.product}/:id`, getProductByIdService);
+    router.get(urlsV1.product, authToken, getProductsService);
+    router.get(`${urlsV1.product}/:id`, authToken, getProductByIdService);
     router.post(urlsV1.product, authToken, createProductService);
     router.put(urlsV1.product, authToken, updateProductService);
     router.delete(urlsV1.product, authToken, deleteProductService);
