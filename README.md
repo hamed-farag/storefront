@@ -18,11 +18,11 @@ For creating StoreFront Database, you need to follow the below points:
 ### For Test Environment
 
 -   Connect to the default Postgres Database instance as root user `psql -U postgres`.
--   Create a new user `CREATE USER ud_user WITH PASSWORD 'ud_pass@word';`.
+-   Create a new user `CREATE USER ud_user_test WITH PASSWORD 'ud_pass@word';`.
 -   Create a database called **ud_test_storefront** `CREATE DATABASE ud_storefront_test;`.
 -   Connect to database and grant all privileges to the user **ud_storefront_test**.
-    -   `\c ud_test_storefront`
-    -   `GRANT ALL PRIVILEGES ON DATABASE ud_test_storefront TO ud_user;`
+    -   `\c ud_storefront_test`
+    -   `GRANT ALL PRIVILEGES ON DATABASE ud_storefront_test TO ud_user_test;`
 
 ---
 
